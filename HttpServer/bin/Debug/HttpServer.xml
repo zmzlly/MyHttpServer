@@ -1,0 +1,276 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HttpServer</name>
+    </assembly>
+    <members>
+        <member name="T:HttpServer.RequestContextModel">
+            <summary>
+            客户端请求上下文的有关内容
+            </summary>
+        </member>
+        <member name="P:HttpServer.RequestContextModel.RequestMode">
+            <summary>
+            请求模式：GET、POST。。。。。。
+            </summary>
+        </member>
+        <member name="P:HttpServer.RequestContextModel.RequestUrL">
+            <summary>
+            客户端请求的URL
+            </summary>
+        </member>
+        <member name="P:HttpServer.RequestContextModel.QueryKeyValues">
+            <summary>
+            客户端请求 URL 中的查询键值对
+            </summary>
+        </member>
+        <member name="P:HttpServer.RequestContextModel.HeaderKeyValues">
+            <summary>
+            客户端请求的头键值对，键对应的值是字符串数组
+            </summary>
+        </member>
+        <member name="P:HttpServer.RequestContextModel.RequestBody">
+            <summary>
+             客户端请求的Body
+            </summary>
+        </member>
+        <member name="P:HttpServer.RequestContextModel.RequestBytesBody">
+            <summary>
+            客户端请求的byte数组，用于上传文件
+            </summary>
+        </member>
+        <member name="T:HttpServer.AbstractServer">
+            <summary>
+            <br>Http服务的抽象类，注意事项：</br>
+            <br>1. 派生类的构造函数必须接收 HttpListenerContext 的对象，并且要给重写的 Ctx 属性赋值；</br>
+            <br>2. 派生类的类名要和 Url 中的路径对应；</br>
+            <br>3. Http的监听线程是根据客户端请求的Url中的路径，寻找对应的服务类（派生类）。</br>
+            </summary>
+        </member>
+        <member name="P:HttpServer.AbstractServer.ServerMode">
+            <summary>
+            服务方式：GET、POST、。。。，用于限定客户端的访问方式。
+            </summary>
+        </member>
+        <member name="P:HttpServer.AbstractServer.IsBytesBody">
+            <summary>
+            是否按字节数组接收BODY报文，用于上传文件
+            </summary>
+        </member>
+        <member name="P:HttpServer.AbstractServer.Ctx">
+            <summary>
+            客户端请求的上下文
+            </summary>
+        </member>
+        <member name="M:HttpServer.AbstractServer.ServerMethod(System.Action{System.String})">
+            <summary>
+            根据不同的业务需求重写该方法。
+            </summary>
+            <param name="action">若要反馈执行结果必须回调该函数 </param>
+        </member>
+        <member name="P:HttpServer.AbstractServer.ContextModel">
+            <summary>
+            客户端请求上下文的有关内容
+            </summary>
+        </member>
+        <member name="M:HttpServer.AbstractServer.CheckQueryKeyValue">
+            <summary>
+            检查url中的查询键值对的合法性并处理请求的上下文
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HttpServer.AbstractServer.WriteResponseBody(System.String)">
+            <summary>
+            使用Writer输出http响应代码,UTF8格式
+            </summary>
+            <param name="strBody"></param>
+        </member>
+        <member name="T:HttpServer.Default">
+            <summary>
+            当请求的URL没有路径或请求路径对应的服务类不存在时，执行Default服务。
+            </summary>
+        </member>
+        <member name="P:HttpServer.Default.ServerMode">
+            <summary>
+            该服务响应的请求类型
+            </summary>
+        </member>
+        <member name="P:HttpServer.Default.IsBytesBody">
+            <summary>
+            是否按字节数组接收BODY报文，用于上传文件
+            </summary>
+        </member>
+        <member name="P:HttpServer.Default.Ctx">
+            <summary>
+            客户端请求的上下文，要在构造函数中赋值
+            </summary>
+        </member>
+        <member name="M:HttpServer.Default.#ctor(System.Net.HttpListenerContext,System.String,System.Collections.Generic.IEnumerable{System.Type})">
+            <summary>
+            必须给 Ctx 属性赋值
+            </summary>
+            <param name="ctx">客户端请求的上下文</param>
+            <param name="msg">错误信息</param>
+            <param name="types">所有继承了抽象类AbstractServer的派生类</param>
+        </member>
+        <member name="M:HttpServer.Default.ServerMethod(System.Action{System.String})">
+            <summary>
+            根据不同的业务需求，重写该方法
+            </summary>
+            <param name="action">主线程委托，为了解耦并给主线程返回信息</param>
+        </member>
+        <member name="T:HttpServer.FileDownload">
+            <summary>
+            下载用户指定的文件
+            </summary>
+        </member>
+        <member name="P:HttpServer.FileDownload.ServerMode">
+            <summary>
+            本服务只接受POST请求
+            </summary>
+        </member>
+        <member name="P:HttpServer.FileDownload.IsBytesBody">
+            <summary>
+            是否按字节数组接收BODY报文，用于上传文件
+            </summary>
+        </member>
+        <member name="P:HttpServer.FileDownload.Ctx">
+            <summary>
+            客户端请求的上下文，要在构造函数中赋值
+            </summary>
+        </member>
+        <member name="M:HttpServer.FileDownload.#ctor(System.Net.HttpListenerContext)">
+            <summary>
+            下载用户指定的文件，构造函数
+            </summary>
+            <param name="ctx">客户端请求的上下文</param>
+        </member>
+        <member name="M:HttpServer.FileDownload.ServerMethod(System.Action{System.String})">
+            <summary>
+            下载用户指定的文件
+            </summary>
+            <param name="action">主线程委托，为了解耦并给主线程返回信息</param>
+        </member>
+        <member name="T:HttpServer.FileUpload">
+            <summary>
+            接收上传文件，根据业务需求返回结果，文件大小不能超过2GB！
+            </summary>
+        </member>
+        <member name="P:HttpServer.FileUpload.ServerMode">
+            <summary>
+            本服务只接受POST请求
+            </summary>
+        </member>
+        <member name="P:HttpServer.FileUpload.IsBytesBody">
+            <summary>
+            是否按字节数组接收BODY报文，用于上传文件
+            </summary>
+        </member>
+        <member name="P:HttpServer.FileUpload.Ctx">
+            <summary>
+            客户端请求的上下文，要在构造函数中赋值
+            </summary>
+        </member>
+        <member name="M:HttpServer.FileUpload.#ctor(System.Net.HttpListenerContext)">
+            <summary>
+            接收上传文件构造函数
+            </summary>
+            <param name="ctx">客户端请求的上下文</param>
+        </member>
+        <member name="M:HttpServer.FileUpload.ServerMethod(System.Action{System.String})">
+            <summary>
+            接收上传文件，根据业务需求返回结果
+            </summary>
+            <param name="action">主线程委托，为了解耦并给主线程返回信息</param>
+        </member>
+        <member name="T:HttpServer.HttpRequest">
+            <summary>
+            Http 客户端
+            </summary>
+        </member>
+        <member name="M:HttpServer.HttpRequest.PostAsyncJson(System.String,System.String)">
+            <summary>
+            使用post方法异步请求
+            </summary>
+            <param name="url">目标链接</param>
+            <param name="json">发送的参数字符串，只能用json</param>
+            <returns>返回的字符串</returns>
+        </member>
+        <member name="M:HttpServer.HttpRequest.PostAsync(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String[]},System.String)">
+            <summary>
+            使用post方法异步请求
+            </summary>
+            <param name="url">目标链接</param>
+            <param name="data">发送的参数字符串</param>
+            <param name="header">头键值对，注意：头键值对中不能有汉字，可以使用utf8编码</param>
+            <param name="strCookie">cookie值</param>
+            <returns>返回的字符串</returns>
+        </member>
+        <member name="M:HttpServer.HttpRequest.PostFileUpload(System.String,System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="url"></param>
+            <param name="bytes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HttpServer.HttpRequest.GetAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.String[]})">
+            <summary>
+            使用get方法异步请求
+            </summary>
+            <param name="url">目标链接</param>
+            <param name="header">头键值对，注意：头键值对中不能有汉字，可以使用utf8编码</param>
+            <returns>返回的字符串</returns>
+        </member>
+        <member name="M:HttpServer.HttpRequest.PostObjectAsync``2(System.String,``1)">
+            <summary>
+            使用post返回异步请求直接返回对象
+            </summary>
+            <typeparam name="T">返回对象类型</typeparam>
+            <typeparam name="T2">请求对象类型</typeparam>
+            <param name="url">请求链接</param>
+            <param name="obj">请求对象数据</param>
+            <returns>请求返回的目标对象</returns>
+        </member>
+        <member name="M:HttpServer.HttpRequest.GetObjectAsync``1(System.String)">
+            <summary>
+            使用Get返回异步请求直接返回对象
+            </summary>
+            <typeparam name="T">请求对象类型</typeparam>
+            <param name="url">请求链接</param>
+            <returns>返回请求的对象</returns>
+        </member>
+        <member name="T:HttpServer.LoginTest">
+            <summary>
+            用户登录测试
+            </summary>
+        </member>
+        <member name="P:HttpServer.LoginTest.ServerMode">
+            <summary>
+            该服务响应的请求类型
+            </summary>
+        </member>
+        <member name="P:HttpServer.LoginTest.IsBytesBody">
+            <summary>
+            是否按字节数组接收BODY报文，用于上传文件
+            </summary>
+        </member>
+        <member name="P:HttpServer.LoginTest.Ctx">
+            <summary>
+            客户端请求的上下文，要在构造函数中赋值
+            </summary>
+        </member>
+        <member name="M:HttpServer.LoginTest.#ctor(System.Net.HttpListenerContext)">
+            <summary>
+            测试登录构造函数
+            </summary>
+            <param name="ctx">客户端请求的上下文</param>
+        </member>
+        <member name="M:HttpServer.LoginTest.ServerMethod(System.Action{System.String})">
+            <summary>
+            用户登录测试
+            </summary>
+            <param name="action">主线程委托，为了解耦并给主线程返回信息</param>
+        </member>
+    </members>
+</doc>

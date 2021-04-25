@@ -1,0 +1,13 @@
+E:\WinFormHttpServer\HttpServer\bin\Debug\HttpServer.xml
+E:\WinFormHttpServer\HttpServer\bin\Debug\HttpServer.dll
+E:\WinFormHttpServer\HttpServer\bin\Debug\HttpServer.pdb
+E:\WinFormHttpServer\HttpServer\obj\Debug\HttpServer.csprojAssemblyReference.cache
+E:\WinFormHttpServer\HttpServer\obj\Debug\HttpServer.csproj.CoreCompileInputs.cache
+E:\WinFormHttpServer\HttpServer\obj\Debug\HttpServer.dll
+E:\WinFormHttpServer\HttpServer\obj\Debug\HttpServer.pdb
+E:\WinFormHttpServer\HttpServer\bin\Debug\ICSharpCode.SharpZipLib.dll
+E:\WinFormHttpServer\HttpServer\bin\Debug\Newtonsoft.Json.dll
+E:\WinFormHttpServer\HttpServer\bin\Debug\ICSharpCode.SharpZipLib.pdb
+E:\WinFormHttpServer\HttpServer\bin\Debug\ICSharpCode.SharpZipLib.xml
+E:\WinFormHttpServer\HttpServer\bin\Debug\Newtonsoft.Json.xml
+E:\WinFormHttpServer\HttpServer\obj\Debug\HttpServer.csproj.CopyComplete

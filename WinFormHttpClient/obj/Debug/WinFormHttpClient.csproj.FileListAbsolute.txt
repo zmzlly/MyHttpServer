@@ -1,0 +1,16 @@
+E:\WinFormHttpServer\WinFormHttpClient\obj\Debug\WinFormHttpClient.Form1.resources
+E:\WinFormHttpServer\WinFormHttpClient\obj\Debug\WinFormHttpClient.Properties.Resources.resources
+E:\WinFormHttpServer\WinFormHttpClient\obj\Debug\WinFormHttpClient.csproj.GenerateResource.cache
+E:\WinFormHttpServer\WinFormHttpClient\obj\Debug\WinFormHttpClient.csproj.CoreCompileInputs.cache
+E:\WinFormHttpServer\WinFormHttpClient\bin\Debug\WinFormHttpClient.exe.config
+E:\WinFormHttpServer\WinFormHttpClient\bin\Debug\WinFormHttpClient.exe
+E:\WinFormHttpServer\WinFormHttpClient\bin\Debug\WinFormHttpClient.pdb
+E:\WinFormHttpServer\WinFormHttpClient\bin\Debug\HttpServer.dll
+E:\WinFormHttpServer\WinFormHttpClient\bin\Debug\Newtonsoft.Json.dll
+E:\WinFormHttpServer\WinFormHttpClient\bin\Debug\HttpServer.pdb
+E:\WinFormHttpServer\WinFormHttpClient\bin\Debug\HttpServer.xml
+E:\WinFormHttpServer\WinFormHttpClient\bin\Debug\Newtonsoft.Json.xml
+E:\WinFormHttpServer\WinFormHttpClient\obj\Debug\WinFormHttpClient.csprojAssemblyReference.cache
+E:\WinFormHttpServer\WinFormHttpClient\obj\Debug\WinFormHttpClient.csproj.CopyComplete
+E:\WinFormHttpServer\WinFormHttpClient\obj\Debug\WinFormHttpClient.exe
+E:\WinFormHttpServer\WinFormHttpClient\obj\Debug\WinFormHttpClient.pdb
